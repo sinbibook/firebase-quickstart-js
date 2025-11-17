@@ -24,6 +24,8 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev:local": "vite --mode local",
+    "dev:production": "vite --mode development",
     "build": "vite build",
     "format": "prettier --write ."
   },

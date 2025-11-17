@@ -28,5 +28,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "test": "scripts/test.sh"
+  },
+  "dependencies": {
+    "firebase": "^12.6.0"
   }
 }

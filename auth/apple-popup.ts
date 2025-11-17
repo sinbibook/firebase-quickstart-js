@@ -1,8 +1,8 @@
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './config';
+import { setupAuthEmulator } from './utils/firebase-env';
 import {
   OAuthProvider,
-  connectAuthEmulator,
   getAuth,
   onAuthStateChanged,
   signInWithPopup,
@@ -12,9 +12,8 @@ initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-if (window.location.hostname === 'localhost') {
-  connectAuthEmulator(auth, 'http://127.0.0.1:9099');
-}
+
+setupAuthEmulator(auth);
 
 const signInButton = document.getElementById(
   'quickstart-sign-in',

@@ -1,20 +1,19 @@
 import { initializeApp } from 'firebase/app';
 import {
-  connectAuthEmulator,
   getAuth,
   onAuthStateChanged,
   signInWithCustomToken,
   signOut,
 } from 'firebase/auth';
 import { firebaseConfig } from './config';
+import { setupAuthEmulator } from './utils/firebase-env';
 
 initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-if (window.location.hostname === 'localhost') {
-  connectAuthEmulator(auth, 'http://127.0.0.1:9099');
-}
+
+setupAuthEmulator(auth);
 
 const tokenTextArea = document.getElementById(
   'tokentext',

@@ -1,6 +1,5 @@
 import { initializeApp } from 'firebase/app';
 import {
-  connectAuthEmulator,
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
@@ -10,14 +9,14 @@ import {
   signOut,
 } from 'firebase/auth';
 import { firebaseConfig } from './config';
+import { setupAuthEmulator } from './utils/firebase-env';
 
 initializeApp(firebaseConfig);
 
 const auth = getAuth();
 
-if (window.location.hostname === 'localhost') {
-  connectAuthEmulator(auth, 'http://127.0.0.1:9099');
-}
+// 환경 변수 기반 emulator 연결 (local/dev 구분)
+setupAuthEmulator(auth);
 
 const emailInput = document.getElementById('email')! as HTMLInputElement;
 const passwordInput = document.getElementById('password')! as HTMLInputElement;
