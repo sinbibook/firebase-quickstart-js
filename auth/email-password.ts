@@ -133,6 +133,18 @@ function sendPasswordReset() {
 
 // Listening for auth state changes.
 onAuthStateChanged(auth, function (user) {
+  console.log('🔐 Auth state changed, user:', user ? user.email : 'null');
+
+  if (user) {
+    user.getIdToken().then((idToken) => {
+      console.log('✅ ID Token:', idToken);
+    }).catch((error) => {
+      console.error('❌ Error getting ID token:', error);
+    });
+  } else {
+    console.log('⚠️ No user logged in');
+  }
+
   verifyEmailButton.disabled = true;
   if (user) {
     // User is signed in.
